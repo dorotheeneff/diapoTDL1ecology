@@ -1,0 +1,58 @@
+/* Réduit la taille des titres */
+.reveal h2 {
+    font-size: 1em !important;
+}
+
+/* Réduire la taille du texte normal */
+.reveal p {
+    font-size: 0.7em !important;  /* Ajuste la taille du texte (1em par défaut) */
+}
+
+/* Réduire aussi la taille des listes (ul/li et ol/li) */
+.reveal ul, .reveal ol {
+    font-size: 0.7em !important;
+}
+
+/* Réduire la taille de texte pour tous les tableaux */
+.reveal table {
+    font-size: 0.5em;  
+}
+
+/* Centrer les tableaux */
+.reveal table {
+    margin: auto;
+    text-align: center;
+}
+
+/* Centrer en hauteur et largeur */
+.center-content {
+    display: flex;
+    align-items: center;  /* Centre verticalement */
+    justify-content: center;  /* Centre horizontalement */
+    flex-grow: 1;  /* Prend toute la hauteur disponible sans inclure le titre */
+}
+
+/* equation en vert */
+.equation-verte {
+    color: green;  /* Définit la couleur du texte en vert */
+    text-align: center; /* Centre le texte */
+    display: block; /* Permet de centrer correctement */
+}
+
+.image-container {
+    position: relative; /* Conteneur positionné pour gérer la superposition */
+    display: inline-block; /* Garde la taille de l'image */
+}
+
+.highlight-box {
+    position: absolute;
+    background-color: rgba(0, 255, 0, 0.3); /* Vert semi-transparent */
+    border: 2px solid green; /* Bordure verte */
+    width: 100px; /* Ajuste la taille du rectangle */
+    height: 50px;
+    top: 40%; /* Ajuste la position verticale */
+    left: 50%; /* Ajuste la position horizontale */
+    transform: translate(-50%, -50%); /* Centre le rectangle */
+}
+
+

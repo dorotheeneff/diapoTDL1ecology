@@ -1,0 +1,15 @@
+﻿Mois;Temperature;Precipitations;i_mensuel;Interpretation_Indice_aridite;Interpretation_diagramme_ombro
+Janvier;-1;50;55;Humide;Mois_humide
+Fevrier;1;50;55;Humide;Mois_humide
+Mars;5;50;40;Humide;Mois_humide
+Avril;10;70;42;Humide;Mois_humide
+Mai;15;88;42;Humide;Mois_humide
+Juin;20;60;24;Sub-humide;Mois_humide
+Juillet;22;80;30;Sub-humide;Mois_humide
+Aout;21;90;35;Humide;Mois_humide
+Septembre;18;80;34;Humide;Mois_humide
+Octobre;11;90;51;Humide;Mois_humide
+Novembre;8;70;47;Humide;Mois_humide
+Decembre;2;60;60;Humide;Mois_humide
+13e_mois;-1;50;NA;NA;NA
+;;;;;

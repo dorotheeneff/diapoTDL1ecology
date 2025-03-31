@@ -1,0 +1,403 @@
+---
+title: "TD2 : Analyse du climat"
+subtitle: "S1SV222 - Introduction à l’écologie : organisation et fonctionnement de la biosphère"
+author: "Dorothée NEFF"
+institute: "Université de la Réunion"
+date: today
+format:
+  revealjs:
+    incremental: true
+    slide-number: TRUE
+    css: styles.css
+---
+
+## La forêt tempérée
+
+ 
+
+::: fade-in
+![](images/milieu_d_etude.png){fig-align="center"}
+:::
+
+## La forêt tempérée
+
+ 
+
+::: fade-in
+![](images/foret_temperee1.png){.column width="32%"} ![](images/foret_temperee2.jpeg){.column width="32%"} ![](images/foret_temperee3.jpeg){.column width="32%"}
+:::
+
+## Répartition de la superficie forestière mondiale par domaine climatique
+
+::: fade-in
+![](images/repartition_mondiale.png){fig-align="center"}
+:::
+
+-   Une forêt tempérée est un biome caractérisé par la présence de saisons bien définies, des températures entre -30°C et +30°C et des précipitations annuelles entre 75 et 150 cm.
+
+## Exercice 1
+
+ 
+
+À partir des données de températures et de pluviométrie, décrire le climat de chaque biome et lui attribuer un climat dominant.
+
+Pour cela :
+
+-   Calculer l’indice **annuel** de De Martonne : $I = \frac{P}{10+T}$
+-   Calculer l’indice **mensuel** de De Martonne : $i = \frac{12*p}{10+t}$
+
+::: {.fragment .fade-in}
+Avec P = précipitations annuelles, T = température moyenne annuelle, p = précipitations mensuelles et t = température moyenne mensuelle
+:::
+
+## Récupération graphique des données
+
+::::: columns
+::: {.column width="50%"}
+![](images/donnees_diag.png)
+:::
+
+::: {.column .fragment .fade-in .center-content width="50%"}
+ 
+
+| Mois | Température (°C) | Précipitations (mm) |
+|:-----------------|:-----------------------:|:---------------------------:|
+| Janvier | -1 | 50 |
+| Février | [2]{.incremental .fragment .fade-in} | [50]{.incremental .fragment .fade-in} |
+| Mars |  |  |
+| Avril |  |  |
+| Mai |  |  |
+| Juin |  |  |
+| Juillet |  |  |
+| Août |  |  |
+| Septembre |  |  |
+| Octobre |  |  |
+| Novembre |  |  |
+| Décembre |  |  |
+:::
+:::::
+
+## Comment interpréter les indices de De Martonne
+
+ 
+
+::: fade-in
+![](images/indice_martonne.png){fig-align="center"}
+:::
+
+## Calcul de l'indice mensuel d'aridité de De Martonne
+
+-   Rappel de l'équation de l’indice mensuel de De Martonne : $i = \frac{12*p}{10+t}$
+
+::: {.callout-warning .fragment .fade-in}
+Utiliser la [valeur absolue de **t**]{.fragment .highlight-red} sinon vous aurez un indice négatif.
+:::
+
+::: {.fragment .fade-in}
+| Mois      | Température (°C) | Précipitations (mm) | i mensuel | Type de milieu |
+|:--------------|:-------------:|:-------------:|:-------------:|:-------------:|
+| Janvier   |        -1        |         50          |    55     |     Humide     |
+| Février   |                  |                     |           |                |
+| Mars      |                  |                     |           |                |
+| Avril     |                  |                     |           |                |
+| Mai       |                  |                     |           |                |
+| Juin      |                  |                     |           |                |
+| Juillet   |                  |                     |           |                |
+| Août      |                  |                     |           |                |
+| Septembre |                  |                     |           |                |
+| Octobre   |                  |                     |           |                |
+| Novembre  |                  |                     |           |                |
+| Décembre  |                  |                     |           |                |
+:::
+
+## Correction des indices mensuels de De Martonne
+
+ 
+
+| Mois      | Température (°C) | Précipitations (mm) | i mensuel | Type de milieu |
+|:--------------|:-------------:|:-------------:|:-------------:|:-------------:|
+| Janvier   |        -1        |         50          |    55     |     Humide     |
+| Février   |        1         |         50          |    55     |     Humide     |
+| Mars      |        5         |         50          |    40     |     Humide     |
+| Avril     |        10        |         70          |    42     |     Humide     |
+| Mai       |        15        |         88          |    42     |     Humide     |
+| Juin      |        20        |         60          |    24     |   Sub-humide   |
+| Juillet   |        22        |         80          |    30     |   Sub-humide   |
+| Août      |        21        |         90          |    35     |     Humide     |
+| Septembre |        18        |         80          |    34     |     Humide     |
+| Octobre   |        11        |         90          |    51     |     Humide     |
+| Novembre  |        8         |         70          |    47     |     Humide     |
+| Décembre  |        2         |         60          |    60     |     Humide     |
+
+## Calcul de l'indice annuel d'aridité de De Martonne
+
+ 
+
+-   Rappel de l'équation de l’indice annuel de De Martonne : $I = \frac{P}{10+T}$
+
+::: {.fragment .fade-in}
+Avec P = précipitations annuelles, T = température moyenne annuelle
+:::
+
+ 
+
+::: {.fragment .fade-in .equation-verte}
+$$ I = \frac{P}{10+T} = \frac{838}{10 + 11} = 40 $$ ![](images/indice_martonne_vert.png){fig-align="center"}
+:::
+
+## Exercice 2
+
+ 
+
+::: {style="text-align: justify;"}
+Tracer un climatogramme. Pour cela, pour chaque biome, tracer pour chaque mois de l’année, les valeurs de précipitations en abscisse et les températures en ordonnées. Relier les 12 mois de l’année pour représenter un polygone. A partir de la forme des polygones obtenus, classer les climats des différents biomes.
+:::
+
+## Climatogramme de la forêt tempérée
+
+```{r}
+library(ggplot2)
+
+data <- read.table("data/data_foret_temperee.csv", sep = ";", header = TRUE)
+data <- data[c(1:13),]
+
+plot <- ggplot(data, mapping = aes(Precipitations, Temperature, color = Mois)) +
+  theme_light() +
+  geom_point(show.legend = TRUE) +
+  xlim(0, 100) +
+  ylim(-5, 30) 
+
+plot
+```
+
+## Correction du climatogramme de la forêt tempérée
+
+::::: columns
+::: {.column width="70%"}
+ 
+
+```{r}
+library(ggplot2)
+
+data <- read.table("data/data_foret_temperee.csv", sep = ";", header = TRUE)
+data <- data[c(1:13),]
+
+plot <- ggplot(data, aes(x = Precipitations, y = Temperature)) +
+  theme_light() +
+  geom_point(aes(color = Mois), show.legend = TRUE) +  
+  geom_path(aes(group = 1), color = "salmon") +
+  xlim(0, 100) +
+  ylim(-5, 30) 
+
+plot
+```
+:::
+
+::: {.column .fragment .fade-in .center-content width="30%"}
+  Si le polygone est :
+
+-   allongé verticalement = saisons marquées par les changements de températures
+-   allongé horizontalement = saisons marquées par les changements de précipitations
+-   plotôt rond = il y a des changements marqués tout au long de l'année
+:::
+:::::
+
+## Autre exemple : le désert chaud
+
+ 
+
+```{r}
+library(ggplot2)
+
+data <- read.table("data/data_desert_chaud.csv", sep = ";", header = TRUE)
+data <- data[c(1:13),]
+
+plot <- ggplot(data, aes(x = Precipitations, y = Temperature)) +
+  theme_light() +
+  geom_point(aes(color = Mois), show.legend = TRUE) +  
+  geom_path(aes(group = 1), color = "orange") +
+  xlim(0, 100) +
+  ylim(-5, 30) 
+
+plot
+```
+
+## Exercice 3
+
+::::: columns
+::: {.column width="30%"}
+   
+
+![](images/ex_diag_ombro.png){fig-align="center"}
+:::
+
+::: {.column .center-content width="70%"}
+ 
+
+Tracer des diagrammes ombrothermiques.
+
+Règles à suivre :
+
+-   On porte sur l’axe horizontal les mois de l’année, sur l’axe vertical à gauche les températures et sur un axe vertical à droite les précipitations
+
+-   Les zéros des deux axes verticaux doivent se correspondre. Par convention, une unité de précipitation = à deux unité de température (par exemple : sur l'axe vertical une température de 10°C correspond à une précipitation de 20 mm)
+
+-   Si les précipitations dépassent [les 100 mm mensuelles]{.underline}, au delà de cette valeur, on multiplie l’échelle température / précipitations par 5 au lieu de 2, pour réduire la dimension verticale du graphique
+
+-   On représente les [précipitations mensuelles]{style="color: #00BFFF;"} par des **histogrammes** de [couleur bleue]{style="color: #00BFFF;"} et les [températures mensuelles]{style="color: red;"} par des **points reliés par une** [**courbe** rouge]{style="color: red;"}
+
+-   Les histogrammes qui dépassent les 100 mm sont hachurés pour mettre en évidence, le changement d’échelle. Indiquer sur le diagramme les précipitations et les températures annuelles (somme et moyenne respectivement).
+:::
+:::::
+
+## Interprétation du diagramme ombrothermique
+
+:::::: columns
+::: {.column width="30%"}
+ 
+
+![](images/ex_diag_ombro.png){fig-align="center"}
+:::
+
+:::: {.column .center-content width="70%"}
+[Notions importantes :]{style="color: orange;"}
+
+-   **Mois sec** : Lorsque la barre des précipitations est sous la courbe des températures
+
+-   **Mois humide** : Lorsque la barre des précipitations dépasse la courbe des températures
+
+-   **Mois froid** : Mois dont la température moyenne reste sous 0°C
+
+-   **Amplitude thermique** : Différence entre la température maximale et minimale du graphique (attention aux valeurs négatives si mois froid…)
+
+-   S’il existe des températures négatives, indiquez le nombre de mois
+
+::: {.fragment .fade-in}
+[Analyses des précipitations :]{style="color: orange;"}
+
+-   Calculez la hauteur annuelle des précipitations
+
+-   Pleut-il chaque mois et durant quelle saison se situe le maximum de précipitations ?
+:::
+::::
+::::::
+
+## Correction du diagramme ombrothermique de la forêt tempérée
+
+::::: columns
+::: {.column width="70%"}
+ 
+
+```{r}
+library(ggplot2)
+
+data <- read.table("data/data_foret_temperee.csv", sep = ";", header = TRUE)
+data <- data[c(1:12),]
+data$Mois <- factor(data$Mois, levels = data$Mois)
+
+plot <- ggplot(data, aes(x = Mois)) +
+  geom_col(aes(y = Precipitations / 2), fill = "#00BFFF", alpha = 0.5) +
+  geom_point(aes(y = Temperature), color = "red", size = 2) + 
+  geom_line(aes(y = Temperature, group = 1), color = "red", linewidth = 0.5) +
+  scale_y_continuous(
+    name = "Températures (°C)",
+    sec.axis = sec_axis(~.*2, name = "Précipitations (mm)")
+  ) +
+  labs(x = "Mois") +
+  theme_light()
+
+plot
+```
+:::
+
+::: {.column .center-content width="30%"}
+[Notions importantes :]{style="color: orange;"}
+
+-   **Mois sec** : 0
+
+-   **Mois humide** : 12
+
+-   **Mois froid** : 1
+
+-   **Amplitude thermique** : 23 °C
+
+[Analyses des précipitations :]{style="color: orange;"}
+
+-   **Hauteur annuelle des précipitations** : 838 mm
+
+-   Il pleut tous les mois, le maximum de précipitations sont au mois d'août et au mois d'octobre.
+:::
+:::::
+
+## Quel type de climat correspond à ce biôme ?
+
+:::::: columns
+::: {.column width="60%"}
+ 
+
+![](images/cle_determination_climat.png){fig-align="center"}
+:::
+
+:::: {.column .center-content width="40%"}
+ 
+
+[Forêt tempérée de Staunton, Virginia, USA :]{style="color: orange; font-size: 40px; text-align: justify;"}
+
+ 
+
+Température annuelle : 11 °C Précipitation annuelle : 838 mm Amplitude thermique : 23 °C
+
+ 
+
+::: {.fragment .fade-in}
+[**Climat tempéré océanique**]{style="color: #00BFFF; font-size: 40px;  text-align: center;"}
+:::
+::::
+::::::
+
+## Autre exemple : le désert chaud
+
+:::::: columns
+::: {.column width="60%"}
+ 
+
+```{r}
+library(ggplot2)
+
+data <- read.table("data/data_desert_chaud.csv", sep = ";", header = TRUE)
+data <- data[c(1:13),]
+data$Mois <- factor(data$Mois, levels = data$Mois)
+
+plot <- ggplot(data, aes(x = Mois)) +
+  geom_col(aes(y = Precipitations / 2), fill = "#00BFFF", alpha = 0.5) +
+  geom_point(aes(y = Temperature), color = "red", size = 2) + 
+  geom_line(aes(y = Temperature, group = 1), color = "red", linewidth = 0.5) +
+  scale_y_continuous(
+    name = "Températures (°C)",
+    sec.axis = sec_axis(~.*2, name = "Précipitations (mm)")
+  ) +
+  labs(x = "Mois") +
+  theme_light()
+
+plot
+```
+:::
+
+:::: {.column .center-content width="40%"}
+ 
+
+[Désert chaud et sec d'El-Oasr el-Akhdar, Egypt  :]{style="color: orange; font-size: 40px; text-align: justify;"}
+
+ 
+
+Température annuelle : 19.2 °C 
+Précipitation annuelle : 256 mm 
+Amplitude thermique : 12 °C
+
+ 
+
+::: {.fragment .fade-in}
+[**Climat désertique chaud**]{style="color: #00BFFF; font-size: 40px;  text-align: center;"}
+:::
+::::
+::::::
